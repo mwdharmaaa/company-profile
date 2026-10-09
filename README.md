@@ -1,58 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# MONOCORP - Enterprise Digital Architecture Profile
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, production-grade multipage company profile web system built with Laravel 11+, SQLite, native Blade templates, handwritten pure CSS, and vanilla JavaScript.
 
-## About Laravel
+Designed with an uncompromising **minimalist black-and-white theme** (crisp white background, high-contrast black accents, zero gratuitous frameworks).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Technical Specifications
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend**: Laravel 11+ (Atomic Actions, Single Responsibility Controllers, Form Requests, Seeders).
+- **Database**: SQLite (Zero configuration, in-file storage).
+- **Frontend Architecture**: Native Blade templates, Pure CSS (No Tailwind / No Bootstrap), Vanilla JS (No jQuery / No Vue / No React).
+- **Design Language**: Linear / Figma inspired monochrome interface, sub-pixel typography, crisp border geometry, zero emojis.
+- **Orchestration**: Single-enter bash execution (`deploy.sh`, `redeploy.sh`, `runtest.sh`) + Docker containerization.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Multipage Architecture
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 1. Public Facing Pages
+- **Landing Page (`/`)**: Hero banner, systems philosophy, capabilities grid, engineering journal highlights, metrics counter, and direct project inquiry form.
+- **About Firm (`/about`)**: Company story, mission & vision statements, 4-stage engineering lifecycle, and core architectural principles.
+- **Services Catalog (`/services`)**: Filterable service listings with deliverables checklists, pricing benchmarks, and delivery timeframes.
+- **Service Specifications (`/services/{slug}`)**: Dedicated specification view for each individual service with engagement options.
+- **Technical Journal (`/blog`)**: Engineering dispatches with category filtering, instant search, and native pagination.
+- **Article Reader (`/blog/{slug}`)**: Single dispatch reading view with estimated read times, author meta, and related publications.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### 2. Administrator Console
+- **Admin Authentication (`/admin/login`)**: Session-based credentials portal with rate limiting and CSRF protection.
+- **Control Dashboard (`/admin/dashboard`)**: Metric overview (total services, published dispatches, unread inquiries, read counts) and recent submissions.
+- **Services Management (`/admin/services`)**: Complete CRUD suite to manage titles, slugs, pricing, icons, features, and active/featured toggles.
+- **Journal Management (`/admin/posts`)**: Article publishing suite with automatic slug generation, draft/published scheduling, and view tracking.
+- **Company Settings (`/admin/settings`)**: Live content management for company name, tagline, about story, vision, mission, SLA metrics, and contact channels.
+- **Inquiries Inbox (`/admin/inquiries`)**: Inspection portal to review, update status (unread, read, archived), and delete client submissions.
 
-## Agentic Development
+---
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Quick Start (Single-Enter)
 
+### Local Environment
 ```bash
-composer require laravel/boost --dev
+# 1. Execute deployment bundle
+./deploy.sh
 
-php artisan boost:install
+# 2. Start local development server
+php artisan serve
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Docker Container
+```bash
+docker compose up -d --build
+```
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Default Access Credentials
 
-## Code of Conduct
+- **Public Endpoint**: `http://localhost:8000`
+- **Admin Console**: `http://localhost:8000/admin`
+- **Email**: `admin@monocorp.test`
+- **Password**: `password123`
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+---
 
-## Security Vulnerabilities
+## Automated Test Suites
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+./runtest.sh
+# or
+php artisan test
+```
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+All 13 automated feature tests verify public page responses, admin authentication gates, and database mutation integrity.
