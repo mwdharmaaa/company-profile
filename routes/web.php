@@ -21,6 +21,7 @@ Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('servic
 Route::get('/blog', [BlogController::class, 'index'])->name('blog.index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.show');
 Route::post('/inquiries', [InquiryController::class, 'store'])->name('inquiries.store');
+Route::get('/login', fn () => redirect()->route('admin.login'))->name('login');
 
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {
