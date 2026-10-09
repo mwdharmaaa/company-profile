@@ -1,0 +1,1 @@
+.table-dense th, .table-dense td { padding: 8px 12px; font-size: 13px; } .table-striped tr:nth-child(even) td { background-color: var(--bg-secondary); }
